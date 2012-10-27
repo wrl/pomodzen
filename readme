@@ -1,0 +1,15 @@
+
+  ._  _ ._ _  _  _|_  _ ._
+  |_)(_)| | |(_)(_|/_(/_| |
+  |
+
+  this is a stupid little hack that displays a pomodoro timer in the
+  corner of yr screen with dzen2.
+
+  read the options in the head of pomodzen.py to configure to yr own
+  tastes.
+
+  you will need: dzen2 and python. tested with py2.7 and py3.2 so i
+  guess everything's copacetic there but hey ymmv homie.
+
+  feedback and party invitations to wrl@illest.net danke
