@@ -14,7 +14,7 @@ height = 40
 width  = 265
 
 # in seconds, please
-pomodoro_length = (60) / 6.0
+pomodoro_length = (60) * 25
 
 # runs at the end of the pomodoro
 done_cmd = "mplayer ~/vuvuzela.opus"
@@ -26,6 +26,7 @@ done_cmd = "mplayer ~/vuvuzela.opus"
 ###########################################
 
 from subprocess import Popen, PIPE, call
+import argparse
 import time
 import math
 
@@ -107,8 +108,41 @@ class pomodzen(dzen):
 
         self.pipe_to.stdin.write(ctrl.encode("ascii"))
 
-if __name__ == "__main__":
+def main():
+    global pomodoro_length, done_cmd
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-l", "--length",
+        dest="length",
+        help="length of Pomodoro. assumed to be in seconds unless given in the form of '25m'")
+
+    parser.add_argument("-c", "--done-cmd",
+        dest="done_cmd",
+        help="command to run at the end of a Pomodoro")
+
+    args = parser.parse_args()
+
+    if args.length:
+        l = args.length
+
+        if l[-1] == "m":
+            l = float(l[:-1]) * 60
+        elif l[-1] == "h":
+            l = float(l[:-1]) * 60 * 60
+        elif l[-1] == "s":
+            l = float(l[:-1])
+        else:
+            l = float(l)
+
+        pomodoro_length = l
+
+    if args.done_cmd:
+        done_cmd = args.done_cmd
+
     pomodzen(
         length=pomodoro_length,
         cmd=dzen_cmd,
         done_cmd=done_cmd)()
+
+if __name__ == "__main__":
+    main()

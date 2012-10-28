@@ -9,6 +9,18 @@
   read the options in the head of pomodzen.py to configure to yr own
   tastes.
 
+  run by:
+
+	$ python pomodzen.py
+
+  or
+
+	$ ./pomodzen.py
+
+  be sure to check the cmdline options out:
+
+	$ ./pomodzen.py --help
+
   you will need: dzen2 and python. tested with py2.7 and py3.2 so i
   guess everything's copacetic there but hey ymmv homie.
 
